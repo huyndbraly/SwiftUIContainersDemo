@@ -1,213 +1,311 @@
-//import SwiftUI
-//import UIKit
-//
-//struct ContentView: View {
-//    // các phòng vẽ chung đang diễn ra
-//    let activeRooms = [
-//        RoomInfo(title: "Ký họa phong cảnh Hà Nội", host: "Huy & Thảo", members: 4, category: "Digital Painting"),
-//        RoomInfo(title: "Thử thách vẽ chân dung 15p", host: "Minh Quân", members: 6, category: "Sketch"),
-//        RoomInfo(title: "Sáng tạo thế giới Xianxia", host: "Danh Huy", members: 3, category: "Concept Art")
-//    ]
-//    
-//    // các tác phẩm vẽ cộng tác
-//    let collaborativeArtworks = ["Tác phẩm #01", "Tác phẩm #02", "Tác phẩm #03", "Tác phẩm #04"]
-//    
-//    // Chia 2 cột tác phẩm cộng tác
-//    let columns = [
-//        GridItem(.flexible(), spacing: 15),
-//        GridItem(.flexible(), spacing: 15)
-//    ]
-//
-//    var body: some View {
-//        // [CONTAINER CHÍNH]: ScrollView bọc toàn bộ nội dung màn hình để người dùng có thể cuộn dọc xem hết thông tin
-//        ScrollView {
-//            // [CONTAINER DỌC - VStack]: Sắp xếp tất cả các khối giao diện từ trên xuống dưới với khoảng cách đều nhau (spacing: 20)
-//            VStack(alignment: .leading, spacing: 20) {
-//                
-//                // --- PHẦN 1: HEADER STUDIO CỦA NGHỆ SĨ ---
-//                // [CONTAINER CHỒNG LỚP - ZStack]: Dùng để xếp ảnh bìa nằm dưới và đè một phần ảnh đại diện (Avatar) lên trên
-//                ZStack(alignment: .bottom) {
-//                    // Khối hình chữ nhật làm ảnh bìa nền (sử dụng Color(UIColor...) sau khi đã import UIKit)
-//                    Rectangle()
-//                        .fill(Color(UIColor.systemGray5))
-//                        .frame(height: 180)
-//                    
-//                    // [CONTAINER NGANG - HStack]: Sắp xếp Avatar và tên nghệ sĩ nằm cạnh nhau theo chiều ngang ở phần đáy ảnh bìa
-//                    HStack(alignment: .bottom) {
-//                        // Khối tròn hiển thị Avatar nghệ sĩ
-//                        Circle()
-//                            .fill(Color(UIColor.systemBackground))
-//                            .frame(width: 84, height: 84)
-//                            .overlay(Circle().stroke(Color(UIColor.systemBackground), lineWidth: 4))
-//                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-//                        
-//                        // [CONTAINER DỌC - VStack]: Chứa thông tin tên và mô tả ngắn của nghệ sĩ
-//                        VStack(alignment: .leading, spacing: 4) {
-//                            Text("Nguyễn Danh Huy")
-//                                .font(.title3)
-//                                .fontWeight(.bold)
-//                                .foregroundColor(.primary)
-//                            Text("artMate Creator • Drawing Together")
-//                                .font(.subheadline)
-//                                .foregroundColor(.secondary)
-//                        }
-//                        .padding(.bottom, 8)
-//                        
-//                        Spacer() // Đẩy toàn bộ thông tin sang lề trái
-//                    }
-//                    .padding(.horizontal)
-//                    .offset(y: 35) // Dịch chuyển phần chứa avatar và tên tràn xuống biên dưới ảnh bìa tạo hiệu ứng nổi
-//                }
-//                .padding(.bottom, 45) // Bù khoảng trống để các thành phần bên dưới không bị che khuất do hiệu ứng offset
-//                
-//                // --- PHẦN 2: CÁC NÚT THAO TÁC NHANH ---
-//                // [CONTAINER NGANG - HStack]: Đặt nút "Tạo phòng vẽ chung" và nút "Quét mã QR" nằm trên cùng một hàng ngang
-//                HStack(spacing: 12) {
-//                    // Nút bấm tạo phòng vẽ mới (Drawing Together)
-//                    Button(action: {}) {
-//                        HStack {
-//                            Image(systemName: "paintbrush.pointed.fill")
-//                            Text("Tạo phòng vẽ chung")
-//                                .fontWeight(.semibold)
-//                        }
-//                        .frame(maxWidth: .infinity) // Mở rộng hết chiều ngang có thể
-//                        .padding(.vertical, 12)
-//                        .background(Color.primary) // Màu nền tự động đổi theo chế độ Sáng/Tối (Light/Dark mode)
-//                        .foregroundColor(Color(UIColor.systemBackground))
-//                        .cornerRadius(12)
-//                    }
-//                    
-//                    // Nút bấm mở máy ảnh quét mã phòng nhanh
-//                    Button(action: {}) {
-//                        Image(systemName: "qrcode.viewfinder")
-//                            .font(.title2)
-//                            .padding(11)
-//                            .background(Color(UIColor.systemGray6))
-//                            .foregroundColor(.primary)
-//                            .cornerRadius(12)
-//                    }
-//                }
-//                .padding(.horizontal)
-//                
-//                // Đường kẻ ngang phân tách các khu vực giao diện
-//                Divider()
-//                    .padding(.horizontal)
-//                
-//                // --- PHẦN 3: DANH SÁCH PHÒNG VẼ TRỰC TUYẾN (CUỘN NGANG) ---
-//                // [CONTAINER DỌC - VStack]: Gom nhóm tiêu đề phần phòng vẽ và danh sách bên dưới
-//                VStack(alignment: .leading, spacing: 10) {
-//                    // [CONTAINER NGANG - HStack]: Dùng để đặt tiêu đề ở góc trái và nút "Xem tất cả" ở góc phải
-//                    HStack {
-//                        Text("Phòng Drawing Together đang mở")
-//                            .font(.headline)
-//                        Spacer()
-//                        Text("Xem tất cả")
-//                            .font(.subheadline)
-//                            .foregroundColor(.secondary)
-//                    }
-//                    .padding(.horizontal)
-//                    
-//                    // [CONTAINER CUỘN NGANG - ScrollView]: Cho phép vuốt qua lại theo chiều ngang để xem các thẻ phòng vẽ
-//                    ScrollView(.horizontal, showsIndicators: false) {
-//                        // [CONTAINER NGANG - HStack]: Xếp các thẻ phòng vẽ thành một hàng ngang dài liên tiếp
-//                        HStack(spacing: 15) {
-//                            // Duyệt qua mảng dữ liệu activeRooms để sinh ra các thẻ phòng tương ứng
-//                            ForEach(activeRooms, id: \.title) { room in
-//                                // [CONTAINER DỌC - VStack]: Nội dung bên trong mỗi thẻ phòng vẽ (Số lượng người, Tên phòng, Chủ phòng, Nút tham gia)
-//                                VStack(alignment: .leading, spacing: 8) {
-//                                    HStack {
-//                                        Label("\(room.members) đang vẽ", systemImage: "person.2.fill")
-//                                            .font(.caption2)
-//                                            .padding(.horizontal, 8)
-//                                            .padding(.vertical, 4)
-//                                            .background(Color(UIColor.systemGray6))
-//                                            .foregroundColor(.secondary)
-//                                            .cornerRadius(6)
-//                                        Spacer()
-//                                    }
-//                                    
-//                                    Text(room.title)
-//                                        .font(.subheadline)
-//                                        .fontWeight(.bold)
-//                                        .lineLimit(1)
-//                                    
-//                                    Text("Host: \(room.host)")
-//                                        .font(.caption)
-//                                        .foregroundColor(.secondary)
-//                                    
-//                                    Button(action: {}) {
-//                                        Text("Tham gia vẽ")
-//                                            .font(.caption)
-//                                            .fontWeight(.semibold)
-//                                            .frame(maxWidth: .infinity)
-//                                            .padding(.vertical, 6)
-//                                            .background(Color(UIColor.systemGray6))
-//                                            .foregroundColor(.primary)
-//                                            .cornerRadius(6)
-//                                    }
-//                                }
-//                                .padding()
-//                                .frame(width: 200) // Cố định chiều rộng cho từng thẻ card phòng vẽ ngang
-//                                .background(Color(UIColor.systemBackground))
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 14)
-//                                        .stroke(Color(UIColor.systemGray4), lineWidth: 0.8) // Viền khung basic tinh tế
-//                                )
-//                                .cornerRadius(14)
-//                            }
-//                        }
-//                        .padding(.horizontal)
-//                    }
-//                }
-//                
-//                // --- PHẦN 4: BỘ SƯU TẬP TÁC PHẨM CỘNG TÁC (LƯỚI 2 CỘT) ---
-//                // [CONTAINER DỌC - VStack]: Gom nhóm tiêu đề và lưới tác phẩm
-//                VStack(alignment: .leading, spacing: 10) {
-//                    Text("Tác phẩm cộng tác (Collab Arts)")
-//                        .font(.headline)
-//                        .padding(.horizontal)
-//                    
-//                    // [CONTAINER LƯỚI - LazyVGrid]: Tự động sắp xếp các tác phẩm thành dạng lưới 2 cột tối ưu hiệu năng
-//                    LazyVGrid(columns: columns, spacing: 15) {
-//                        ForEach(collaborativeArtworks, id: \.self) { art in
-//                            // [CONTAINER DỌC - VStack]: Bố cục từng ô tác phẩm gồm khung hình minh họa và tên chú thích bên dưới
-//                            VStack(alignment: .leading, spacing: 6) {
-//                                RoundedRectangle(cornerRadius: 12)
-//                                    .fill(Color(UIColor.systemGray6))
-//                                    .frame(height: 130)
-//                                    .overlay(
-//                                        Image(systemName: "photo.stack.fill")
-//                                            .font(.largeTitle)
-//                                            .foregroundColor(.secondary)
-//                                    )
-//                                
-//                                Text(art)
-//                                    .font(.subheadline)
-//                                    .fontWeight(.medium)
-//                                
-//                                Text("Vẽ chung bởi Nhóm artMate")
-//                                    .font(.caption2)
-//                                    .foregroundColor(.secondary)
-//                            }
-//                        }
-//                    }
-//                    .padding(.horizontal)
-//                }
-//                
-//            }
-//            .padding(.bottom, 30) // Tạo khoảng đệm an toàn ở đáy màn hình khi cuộn hết trang
-//        }
-//    }
-//}
-//
-//// Cấu trúc mô phỏng kiểu dữ liệu của một phòng vẽ chung
-//struct RoomInfo {
-//    let title: String
-//    let host: String
-//    let members: Int
-//    let category: String
-//}
-//
-//#Preview {
-//    ContentView()
-//}
+import SwiftUI
+import UIKit
+
+struct ContentView: View {
+    
+    // Bản chất của struct: struct là kiểu giá trị (value type). Bên trong một phương thức/thuộc tính tính toán KHÔNG có từ khóa mutating (như getter của body), Swift coi self là bất biến (giống hằng số). Do đó trong body bạn không thể gán lại giá trị cho các stored property khai báo bằng var thông thường (còn let thì vốn không bao giờ gán lại được ở bất cứ đâu).
+    // Protocol View yêu cầu body là non-mutating, nên ta không thể đánh dấu body là mutating để lách luật này.
+
+    // Giải pháp (@State): Khi gắn @State vào một biến (ví dụ: @State private var selectedArt: String? = nil), giá trị thật KHÔNG nằm trong struct nữa mà được SwiftUI lưu trữ ở bên ngoài (storage do SwiftUI quản lý, gắn với vòng đời của view trên màn hình). Struct chỉ giữ một "tham chiếu" tới vùng lưu trữ đó, và setter của @State là nonmutating => vì vậy dù self bất biến, ta vẫn gán được selectedArt = ... trong body/closure.
+    // Mỗi khi giá trị thay đổi, SwiftUI sẽ tính lại body và vẽ lại (redraw) những view có ĐỌC biến đó.
+    // Ngoài @State còn có các property wrapper tương tự như @Binding, @StateObject, @ObservedObject, @Environment...
+    
+    // 1. Khai báo Namespace và trạng thái để làm hiệu ứng phóng to (matchedGeometryEffect)
+    @Namespace var animationNamespace //tạo không gian định danh chung cho 2 view để swiftUI nhận biết chúng là cùng 1 đối tượng
+    @State private var selectedArt: String? = nil // Khai báo biến trạng thái selectedArt kiểu Optional: dấu ? nghĩa là biến này có thể chứa một chuỗi (String) hoặc nil (không có giá trị). nil = chưa chọn bài học nào.
+    // => Trong Swift, MỌI kiểu không có dấu ? (String, Int, Double, Bool, kể cả struct/class tự định nghĩa) đều không được phép mang giá trị nil.
+    //    Lưu ý: "rỗng" khác "nil". String vẫn được phép rỗng ("") và Int vẫn được là 0. Chỉ nil là bị cấm, muốn chứa nil phải khai báo Optional (String?).
+    
+    
+    // TRẠNG THÁI CHO BẢNG MÀU VÀ CỌ VẼ (Sử dụng @State ở View Cha)
+    @State private var selectedColor: Color = .blue // Màu sắc cọ đang được chọn
+    @State private var brushThickness: Double = 5.0 // Độ dày nét cọ đang được chọn
+    
+    
+    let activeRooms = [
+        RoomInfo(title: "Ký họa phong cảnh Hà Nội", host: "Huy & Thảo", members: 4, category: "Digital Painting"),
+        RoomInfo(title: "Thử thách vẽ chân dung 15p", host: "Minh Quân", members: 6, category: "Sketch"),
+        RoomInfo(title: "Sáng tạo thế giới Xianxia", host: "Danh Huy", members: 3, category: "Concept Art")
+    ]
+    
+    let collaborativeArtworks = ["Bài học #01: Ký họa", "Bài học #02: Phối màu", "Bài học #03: Ánh sáng", "Bài học #04: Giải phẫu", "HUHU"]
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 150), spacing: 15)
+    ]
+    
+    // .adaptive(minimum: 150): SwiftUI xếp CÀNG NHIỀU CỘT CÀNG TỐT sao cho mỗi cột rộng ít nhất 150pt, sau đó chia đều phần chiều ngang còn dư cho các cột.
+    // Ví dụ iPhone rộng ~393pt, trừ padding 2 bên còn ~361pt => vừa 2 cột (2 x 150 + spacing 15 = 315 ≤ 361), không đủ chỗ cho 3 cột.
+    // spacing: 15 trong GridItem là khoảng cách NGANG giữa các cột (khoảng cách dọc giữa các hàng nằm ở LazyVGrid(spacing:)).
+    // LazyVGrid cuộn theo chiều dọc: chiều rộng ô bị giới hạn bởi màn hình, còn chiều cao mỗi hàng bằng ô CAO NHẤT trong hàng đó (ô nhiều chữ sẽ dài xuống).
+
+
+    let colorPalette: [Color] = [.red, .orange, .mint, .brown, .yellow, .green, .blue, .purple, .primary]
+    // [Color]: Kiểu dữ liệu (Type) của hằng số, ký hiệu dấu ngoặc vuông [...] đại diện cho kiểu mảng (Array). Nó chỉ định rằng mảng này chỉ được phép chứa các phần tử có kiểu dữ liệu là Color.
+    // => Khai báo tường minh kiểu dữ liệu (Explicit Type Annotation) [Color] ở đây là BẮT BUỘC, không chỉ để "dễ đọc".
+    //    Cú pháp .red, .orange... (implicit member expression) là cách viết tắt của Color.red, Color.orange, Swift cần biết trước kiểu (contextual type) để hiểu dấu chấm đó thuộc về kiểu nào.
+    //    Nếu viết let colorPalette = [.red, .orange] (để Swift tự suy luận - Type Inference) sẽ lỗi biên dịch: "Reference to member 'red' cannot be resolved without a contextual type".
+    // .primary là màu động (dynamic color) của hệ thống: đen ở light mode, trắng ở dark mode.
+    //    Từ primary/secondary không chỉ có ở Color: còn có HierarchicalShapeStyle.primary/.secondary dùng với .foregroundStyle(.primary) cho văn bản chính/phụ, hay UIColor.label/.secondaryLabel bên UIKit.
+    
+    var body: some View { // body là yêu cầu bắt buộc của protocol View, SwiftUI sẽ gọi body để biết view cần hiển thị trên màn hình (và gọi lại mỗi khi @State thay đổi)
+        // View là một giao thức (protocol), đại diện cho bất kì thứ gì hiển thị trên màn hình (as nút bấm, chữ viết, hình ảnh, ...)
+        // từ khóa some (opaque type): body trả về MỘT kiểu cụ thể duy nhất có tuân thủ View. Compiler biết chính xác kiểu đó (ở đây là ZStack<...> lồng rất dài), chỉ là ẩn đi để ta không phải viết ra.
+        //    Vì phải là một kiểu duy nhất nên mọi nhánh đều phải ra cùng kiểu. Các câu lệnh if/else bên trong chạy được là nhờ @ViewBuilder (body ngầm định có) gộp các nhánh thành một kiểu chung.
+        ZStack {
+            // --- GIAO DIỆN CHÍNH ---
+            ScrollView {
+                // [CONTAINER DỌC - VStack]: Sắp xếp tất cả các khối giao diện từ trên xuống dưới (spacing: 20)
+                VStack(alignment: .leading, spacing: 20) {
+                    
+                    // --- PHẦN 1: BẢNG VẼ CHÍNH (ZSTACK ĐÈ LÊN NỀN) ---
+                    // [CONTAINER CHỒNG LỚP - ZStack]: Dùng để xếp nền hiển thị bên dưới và đè các công cụ vẽ, bảng vẽ lên trên
+                    ZStack(alignment: .bottomLeading) {
+                        // Khối hình chữ nhật làm không gian bảng vẽ nền (Màu sắc phản hồi theo selectedColor)
+                        Rectangle()
+                            .fill(Color(UIColor.systemGray6))
+                            .frame(height: 220)
+                            .overlay(
+                                VStack(spacing: 8) {
+                                    Image(systemName: "paintbrush.pointed.fill")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(selectedColor)
+                                    Text("Đang dùng cọ cỡ: \(Int(brushThickness))px")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                            )
+                        
+                        // [CONTAINER DỌC - VStack]: Thanh chỉnh cọ nằm dọc ở góc DƯỚI BÊN TRÁI màn hình vẽ (do ZStack(alignment: .bottomLeading))
+                        VStack(spacing: 12) {
+                            Image(systemName: "slider.vertical.3")
+                                .font(.body)
+                            Divider().frame(width: 20)
+                            Image(systemName: "paintbrush.fill")
+                            Image(systemName: "pencil.tip")
+                            Image(systemName: "eraser.fill")
+                        }
+                        .padding(10)
+                        .background(Color(UIColor.systemBackground).opacity(0.9))
+                        .cornerRadius(12)
+                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                        .padding(.leading, 16)
+                        .padding(.bottom, 16)
+                    }
+                    .cornerRadius(16)
+                    .padding(.horizontal)
+                    
+                    // --- PHẦN 2: Khai báo BẢNG CHỌN MÀU & ĐỘ DÀY CỌ (ĐÃ ĐƯA RA KHỎI SCROLLVIEW CON ĐỂ ĐỨNG ĐỘC LẬP TRONG VSTACK) ---
+                    // Đối số (argument)
+                    // Còn colorPalette:, selectedColor:, brushThickness: là nhãn đối số (argument label).
+                    BrushSettingsView(
+                        colorPalette: colorPalette,
+                        selectedColor: $selectedColor,
+                        brushThickness: $brushThickness
+                    )
+                    .padding(.horizontal)
+                    
+                    // --- PHẦN 3: CÁC NÚT THAO TÁC NHANH ---
+                    HStack(spacing: 12) {
+                        Button(action: {}) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("Tạo phòng học vẽ mới")
+                                    .fontWeight(.semibold)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Color.primary)
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(12)
+                        }
+                        
+                        Button(action: {}) {
+                            Image(systemName: "qrcode.viewfinder")
+                                .font(.title2)
+                                .padding(11)
+                                .background(Color(UIColor.systemGray6))
+                                .foregroundColor(.primary)
+                                .cornerRadius(12)
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    Divider()
+                        .padding(.horizontal)
+                    
+                    // --- PHẦN 4: DANH SÁCH PHÒNG HỌC ĐANG MỞ (CUỘN NGANG) ---
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            Text("Phòng học Drawing Together")
+                                .font(.headline)
+                            Spacer()
+                            Text("Xem tất cả")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.horizontal)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                ForEach(activeRooms, id: \.title) { room in
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        HStack {
+                                            Label("\(room.members) học viên", systemImage: "person.2.fill")
+                                                .font(.caption2)
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
+                                                .background(Color(UIColor.systemGray6))
+                                                .foregroundColor(.secondary)
+                                                .cornerRadius(6)
+                                            Spacer()
+                                        }
+                                        
+                                        Text(room.title)
+                                            .font(.subheadline)
+                                            .fontWeight(.bold)
+                                            .lineLimit(1)
+                                        
+                                        Text("Giảng viên: \(room.host)")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Button(action: {}) {
+                                            Text("Vào lớp học")
+                                                .font(.caption)
+                                                .fontWeight(.semibold)
+                                                .frame(maxWidth: .infinity)
+                                                .padding(.vertical, 6)
+                                                .background(Color(UIColor.systemGray6))
+                                                .foregroundColor(.primary)
+                                                .cornerRadius(6)
+                                        }
+                                    }
+                                    .padding()
+                                    .frame(width: 200)
+                                    .background(Color(UIColor.systemBackground))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .stroke(Color(UIColor.systemGray4), lineWidth: 0.8)
+                                    )
+                                    .cornerRadius(14)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                    
+                    // --- PHẦN 5: LƯỚI BÀI HỌC (LAZYVGRID THÍCH ỨNG & HERO ANIMATION) ---
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Thư viện bài học thực hành")
+                            .font(.headline)
+                            .padding(.horizontal)
+                        
+                        LazyVGrid(columns: columns, spacing: 15) {
+                            ForEach(collaborativeArtworks, id: \.self) { art in
+                                if selectedArt != art {
+                                    Button(action: {
+                                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                                            selectedArt = art
+                                        }
+                                    }) {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(Color(UIColor.systemGray5))
+                                                .frame(height: 130)
+                                                .overlay(
+                                                    Image(systemName: "book.closed.fill")
+                                                        .font(.largeTitle)
+                                                        .foregroundColor(.secondary)
+                                                )
+                                                .matchedGeometryEffect(id: art, in: animationNamespace)
+                                            
+                                            Text(art)
+                                                .font(.subheadline)
+                                                .fontWeight(.medium)
+                                                .foregroundColor(.primary)
+                                            
+                                            Text("Hoàn thành bài tập")
+                                                .font(.caption2)
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                } else {
+                                    VStack {}.frame(height: 180)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    
+                }
+                .padding(.bottom, 30)
+            }
+            
+            // --- MÀN HÌNH CHI TIẾT BÀI HỌC ---
+            if let currentItem = selectedArt {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                            selectedArt = nil
+                        }
+                    }
+                
+                VStack(alignment: .leading, spacing: 16) {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color(UIColor.systemGray5))
+                        .frame(height: 240)
+                        .overlay(
+                            Image(systemName: "book.closed.fill")
+                                .font(.system(size: 60))
+                                .foregroundColor(.secondary)
+                        )
+                        .matchedGeometryEffect(id: currentItem, in: animationNamespace, isSource: false)
+                    
+                    Text(currentItem)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Text("Nội dung hướng dẫn chi tiết từng bước thực hành sáng tạo nghệ thuật cho bài học này.")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                            selectedArt = nil
+                        }
+                    }) {
+                        Text("Đóng hướng dẫn")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.primary)
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(12)
+                    }
+                }
+                .padding(24)
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(24)
+                .padding(20)
+                .shadow(radius: 20)
+                .transition(.opacity)
+            }
+        }
+    }
+}
+
+
+struct RoomInfo {
+    let title: String
+    let host: String
+    let members: Int
+    let category: String
+}
+
+#Preview {
+    ContentView()
+}
