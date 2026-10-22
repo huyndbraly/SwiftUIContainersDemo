@@ -32,10 +32,24 @@ struct BrushSettingsView: View {
     @Binding var selectedColor: Color
     @Binding var brushThickness: Double
     
+//    @Environment(\.colorScheme) var colorScheme
+    
+    @Environment(\.customAppColor) private var appThemeColor
+    
+    // Tầng con cũng có thể tự bắt sóng ScenePhase mà không cần view cha phải truyền hộ!
+        @Environment(\.scenePhase) private var scenePhase
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Công cụ điều chỉnh cọ vẽ")
                 .font(.headline)
+            
+            HStack {
+                Image(systemName: scenePhase == .active ? "wifi" : "wifi.slash")
+                Text(scenePhase == .active ? "Trạng thái: Sẵn sàng vẽ trực tuyến" : "Trạng thái: Tạm dừng kết nối")
+                    .font(.caption2)
+            }
+            .foregroundColor(.secondary)
             
             // 1. Hàng chọn màu sắc cọ (Cuộn ngang)
             ScrollView(.horizontal, showsIndicators: false) {
@@ -74,6 +88,7 @@ struct BrushSettingsView: View {
         }
         .padding()
         .background(Color(UIColor.systemBackground))
+//        .background(colorScheme == .dark ? Color.blue : Color.gray)
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
@@ -83,5 +98,11 @@ struct BrushSettingsView: View {
 }
 
 #Preview {
-    ContentView()
+    // Preview riêng view con: không có @State của view cha nên dùng .constant(...) để tạo Binding giả (chỉ đọc)
+    BrushSettingsView(
+        colorPalette: [.red, .orange, .green, .blue, .purple],
+        selectedColor: .constant(.blue),
+        brushThickness: .constant(5)
+    )
+    .padding()
 }
