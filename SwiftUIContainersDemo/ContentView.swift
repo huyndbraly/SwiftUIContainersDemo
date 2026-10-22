@@ -31,14 +31,11 @@ struct ContentView: View {
     @State private var navigationPathScreen = NavigationPath() // NavigationPath() lúc đầu rỗng, tức là chỉ có màn hình root (Sảnh Chờ).
     
     
-    // HỨNG TRẠNG THÁI VÒNG ĐỜI CỦA APP (Active, Inactive, Background)
+    // HỨNG TRẠNG THÁI (Active, Inactive, Background). SwiftUI tự cập nhật biến này mỗi khi app chuyển trạng thái. Chỉ đọc, không gán được.
     @Environment(\.scenePhase) private var scenePhase
     
     // Trạng thái giả lập kết nối socket phòng vẽ
     @State private var isSocketConnected: Bool = true
-    
-    // Lưu lại ID phòng vẽ hiện tại để khi user mở lại app, biết đường tự động nhảy vào lại đúng phòng đó
-    @State private var currentActiveRoomID: String? = nil
     
     
     let activeRooms = [
@@ -111,11 +108,11 @@ struct ContentView: View {
                         }
                         .padding(.horizontal)
                         
-                        // Nút bấm thủ công để test chuyển màn hình phòng vẽ
-                        Button(action: {
-                            navigationPathScreen.append("Phòng vẽ thủ công #999")
-                        }) {
-                            Text("Test vào phòng nhanh")
+                        // CÁCH 1 - ĐI TAY BẰNG NavigationLink: chỉ push 1 màn (Danh sách phòng).
+                        // Người dùng phải tự bấm từng bước: Danh sách phòng -> Phòng 123 -> ô tranh #42 (mỗi bước là 1 NavigationLink).
+                        // NavigationLink(value: RoomListRoute()) = bấm vào thì SwiftUI tự append(RoomListRoute()) vào path => tra .navigationDestination(for: RoomListRoute.self)
+                        NavigationLink(value: RoomListRoute()) {
+                            Text("Danh sách phòng")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity)
                                 .padding()
@@ -124,6 +121,9 @@ struct ContentView: View {
                                 .cornerRadius(12)
                         }
                         .padding(.horizontal)
+
+                        // CÁCH 2 - BẰNG CODE QUA PATH (nhảy thẳng Phòng 123 -> Tranh 42): demo bằng deep link, xem .onOpenURL bên dưới
+                        //   xcrun simctl openurl booted artmate://room/123/42
                         
                         
                         
@@ -310,12 +310,24 @@ struct ContentView: View {
                     }
                     .padding(.bottom, 30)
                 }
-                // Modifier phải có dấu chấm ở đầu (.navigationTitle) để gắn vào ScrollView phía trên.
-                // Nếu thiếu dấu chấm, Swift hiểu là self.navigationTitle(...) => tạo ra một view MỚI bọc chính ContentView bên trong => body gọi lại body => đệ quy vô hạn, app crash.
-                .navigationTitle("Sảnh Chờ ArtMate")
+                
+                
+                // Modifier phải có dấu chấm ở đầu (.navigationDestination) để gắn vào ScrollView phía trên.
+                // navigationDestination lắng nghe value: từ NavigationLink hoặc path: $ từ NaviationPath() để vẽ lại màn
+                // Navigation Destination (hay gọi tắt là Destination) là nơi mà người dùng có thể đi đến (màn hình, giao diện, hoặc một View bất kỳ trong ứng dụng).
+                // Nếu thiếu dấu chấm, Swift hiểu là self.navigationDestination(...) => tạo ra một view MỚI bọc chính ContentView bên trong => body gọi lại body => đệ quy vô hạn, app crash.
+                // ĐÍCH ĐẾN KHI PATH CÓ CHỨA RoomListRoute (danh sách phòng)
+                .navigationDestination(for: RoomListRoute.self) { _ in // _ : không cần dùng giá trị, chỉ cần biết kiểu
+                    RoomListView()
+                }
                 // 4. ĐỊNH NGHĨA ĐÍCH ĐẾN KHI PATH CÓ CHỨA MÃ PHÒNG (STRING)
-                .navigationDestination(for: String.self) { roomID in               // Navigation Destination (hay gọi tắt là Destination) là nơi mà người dùng có thể đi đến (màn hình, giao diện, hoặc một View bất kỳ trong ứng dụng).
+                .navigationDestination(for: String.self) { roomID in
                     RoomDetailView(roomId: roomID, isConnected: $isSocketConnected)
+                }
+                // ĐÍCH ĐẾN KHI PATH CÓ CHỨA ArtworkRoute (bức tranh)
+                // NavigationPath chứa được nhiều KIỂU khác nhau trộn lẫn (String, ArtworkRoute...), mỗi kiểu cần 1 .navigationDestination riêng.
+                .navigationDestination(for: ArtworkRoute.self) { route in
+                    ArtworkDetailView(route: route)
                 }
 
                 // --- MÀN HÌNH CHI TIẾT BÀI HỌC (phải nằm TRONG ZStack để đè lên ScrollView) ---
@@ -372,18 +384,16 @@ struct ContentView: View {
                 }
             } // đóng ZStack
         } // đóng NavigationStack
+        
         // --- 5. ĐẶT .onChange Ở CẤP GỐC (gắn vào NavigationStack) ĐỂ LUÔN LẮNG NGHE VÒNG ĐỜI APP ---
-        // Nếu gắn vào view nằm trong if let (chỉ tồn tại khi mở thẻ bài học) thì chỉ nghe được lúc thẻ đang mở.
+        // "Mỗi khi người dùng bấm nút Home thoát app ra ngoài, hoặc bấm mở lại app, hãy báo ngay cho tôi biết trạng thái vừa chuyển từ đâu qua đâu!"
         .onChange(of: scenePhase) { oldPhase, newPhase in
             switch newPhase {
             case .active:
                 print("🟢 [App Active]: Mở lại app -> Kết nối lại Socket!")
                 isSocketConnected = true
-                // Nếu có lưu phòng cũ, tự động đẩy lại vào path để phục hồi màn hình
-                if let savedRoom = currentActiveRoomID {
-                    navigationPathScreen.append(savedRoom)
-                    currentActiveRoomID = nil // reset sau khi đã phục hồi
-                }
+                // KHÔNG cần tự phục hồi màn hình: bấm Home chỉ đưa app xuống nền (không tắt app),
+                // mọi @State (kể cả navigationPathScreen) vẫn còn nguyên => mở lại app tự quay về đúng màn đang đứng.
 
             case .inactive:
                 print("🟡 [App Inactive]: Tạm dừng.")
@@ -391,24 +401,38 @@ struct ContentView: View {
             case .background:
                 print("🔴 [App Background]: Đẩy xuống nền -> Ngắt kết nối Socket để cứu pin!")
                 isSocketConnected = false
-                // Lưu lại vết phòng nếu đang đứng ở màn hình chi tiết (giả lập)
-                currentActiveRoomID = "Phòng DeepLink #123"
 
             @unknown default:
                 break
             }
         }
+        
+        
         // --- 6. BẮT URL ĐỂ LÀM DEEP LINK ---
         .onOpenURL { url in
-            // Xử lý URL dạng: artmate://room/123
-            if url.scheme == "artmate", url.host == "room" {
-                let roomId = url.pathComponents.dropFirst().joined(separator: "/")
-                let targetRoom = roomId.isEmpty ? "Phòng Mặc Định" : "Phòng số \(roomId)"
+            // Xử lý URL dạng:
+            //   artmate://room/123     => Sảnh -> Phòng 123
+            //   artmate://room/123/42  => Sảnh -> Phòng 123 -> Tranh 42
+            guard url.scheme == "artmate", url.host == "room" else { return } //=> kiểm tra đúng loại link
 
-                print("🔗 Đã nhận Deep Link nhảy vào: \(targetRoom)")
-                // Nhét thẳng vào giỏ NavigationPath -> App tự động đẩy màn hình nhảy vào phòng vẽ!
-                navigationPathScreen.append(targetRoom)
+            // url.pathComponents của artmate://room/123/42 là ["/", "123", "42"] => dropFirst() bỏ "/" => ["123", "42"]
+
+            let parts = Array(url.pathComponents.dropFirst())
+
+            // Dựng lại toàn bộ path từ URL: xóa hết rồi append lần lượt từng màn
+            // => dù đang đứng ở đâu, mở link xong Back luôn lùi đúng: Tranh -> Phòng -> Danh sách phòng -> Sảnh
+            var newPath = NavigationPath()
+            newPath.append(RoomListRoute()) // màn 1: danh sách phòng (link nào bắt đầu bằng artmate://room cũng có màn này)
+            if let roomId = parts.first { // có mã phòng => thêm màn phòng; không có thì dừng ở danh sách phòng
+                newPath.append(roomId) // màn 2: phòng
+                // dấu phẩy trong if nghĩa là và
+                if parts.count > 1, let artworkId = Int(parts[1]) { // Int("abc") trả về nil => link sai thì chỉ mở phòng
+                    newPath.append(ArtworkRoute(roomId: roomId, artworkId: artworkId)) // màn 3: tranh
+                }
             }
+
+            // Gán path mới 1 lần => NavigationStack push cả chuỗi màn hình cùng lúc
+            navigationPathScreen = newPath
         }
     }
 }

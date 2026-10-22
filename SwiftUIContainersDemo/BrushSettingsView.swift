@@ -70,6 +70,7 @@ struct BrushSettingsView: View {
                     }
                 }
             }
+            .contentMargins(10)
             
             // 2. Thanh trượt điều chỉnh độ dày nét cọ (Slider)
             VStack(alignment: .leading, spacing: 6) {
@@ -98,11 +99,5 @@ struct BrushSettingsView: View {
 }
 
 #Preview {
-    // Preview riêng view con: không có @State của view cha nên dùng .constant(...) để tạo Binding giả (chỉ đọc)
-    BrushSettingsView(
-        colorPalette: [.red, .orange, .green, .blue, .purple],
-        selectedColor: .constant(.blue),
-        brushThickness: .constant(5)
-    )
-    .padding()
+    ContentView()
 }
