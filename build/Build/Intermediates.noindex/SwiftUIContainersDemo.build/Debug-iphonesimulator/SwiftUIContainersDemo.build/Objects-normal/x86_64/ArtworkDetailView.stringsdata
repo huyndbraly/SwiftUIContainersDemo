@@ -1,0 +1,32 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/ArtworkDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Tranh #%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bức tranh #%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Thuộc phòng số %@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 37
+        }
+      }
+    ]
+  },
+  "version": 1
+}

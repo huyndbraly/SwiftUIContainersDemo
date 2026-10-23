@@ -1,0 +1,119 @@
+{
+  "" : {
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemo-primary.dia",
+    "emit-module-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemo-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemo-primary-emit-module.dia",
+    "pch" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemo-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemo-primary.swiftdeps"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/ArtworkDetailView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ArtworkDetailView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/BrushSettingsView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/BrushSettingsView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/ContentView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ContentView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/LiveDrawingView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/LiveDrawingView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/RoomDetailView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomDetailView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/RoomListView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/RoomListView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/SharedBoardView.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedBoardView~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/SharedDrawingStore.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SharedDrawingStore~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/SwiftUIContainersDemoApp.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/SwiftUIContainersDemoApp~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/ThemeExtensions.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/ThemeExtensions~partial.swiftmodule"
+  },
+  "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/admin/Documents/Learning/SwiftUIContainersDemo/build/Build/Intermediates.noindex/SwiftUIContainersDemo.build/Debug-iphonesimulator/SwiftUIContainersDemo.build/Objects-normal/x86_64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

@@ -12,6 +12,10 @@ struct ArtworkRoute: Hashable {
     let artworkId: Int
 }
 
+// Hai giá trị chỉ bằng nhau khi cả roomId và artworkId đều giống nhau. 
+// ArtworkRoute(roomId: "123", artworkId: 42) khác ArtworkRoute(roomId: "123", artworkId: 43), 
+// nên SwiftUI hiểu đó là hai màn khác nhau.
+
 struct ArtworkDetailView: View {
     let route: ArtworkRoute
 

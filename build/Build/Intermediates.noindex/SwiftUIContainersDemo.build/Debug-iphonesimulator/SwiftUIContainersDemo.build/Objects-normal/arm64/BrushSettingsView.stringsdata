@@ -1,0 +1,48 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/BrushSettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Công cụ điều chỉnh cọ vẽ",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Trạng thái: Sẵn sàng vẽ trực tuyến",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Trạng thái: Tạm dừng kết nối",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Độ dày nét cọ:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld pt",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 82
+        }
+      }
+    ]
+  },
+  "version": 1
+}

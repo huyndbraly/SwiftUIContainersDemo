@@ -1,0 +1,56 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/SharedBoardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Vẽ chung 2 máy",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Xoá bảng (cả 2 máy)",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Đã kết nối server",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Chưa kết nối (chạy Server/drawing_server.py?)",
+        "location": {
+          "startingColumn": 70,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nét: %lld · seq cuối: %lld · checksum: %lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 50
+        }
+      }
+    ]
+  },
+  "version": 1
+}

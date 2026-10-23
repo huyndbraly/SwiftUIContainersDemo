@@ -6,7 +6,7 @@ import SwiftUI
 // Màn danh sách phòng không cần dữ liệu gì kèm theo, nhưng path vẫn cần 1 giá trị Hashable để đại diện cho nó.
 // Không dùng String được vì String đã là "mã phòng" (=> RoomDetailView), dùng lại sẽ bị nhầm.
 // => Tạo 1 struct rỗng làm "vé vào cửa" riêng: struct không có thuộc tính nào thì Swift vẫn tự sinh Hashable.
-struct RoomListRoute: Hashable {}
+struct RoomListRoute: Hashable {} // => struct này tuân thủ giao thức Hashable, tức là có thể băm và so sánh.
 
 struct RoomListView: View {
     // Giả lập danh sách mã phòng đang mở (có phòng 123)

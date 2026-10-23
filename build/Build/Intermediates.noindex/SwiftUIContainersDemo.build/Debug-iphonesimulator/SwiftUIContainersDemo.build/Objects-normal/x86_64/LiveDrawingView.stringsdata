@@ -1,0 +1,56 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/LiveDrawingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Vẽ chung realtime",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Số nét: %lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 106
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mới nhất: %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ngắt server giả",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bật server giả",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "Xoá bảng",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 154
+        }
+      }
+    ]
+  },
+  "version": 1
+}

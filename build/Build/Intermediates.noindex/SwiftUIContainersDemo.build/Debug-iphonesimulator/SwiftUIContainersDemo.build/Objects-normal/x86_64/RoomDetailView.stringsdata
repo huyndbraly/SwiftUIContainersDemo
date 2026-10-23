@@ -1,0 +1,56 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/RoomDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Phòng Vẽ Trực Tuyến",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tranh trong phòng (%lld)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Phòng số %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Trạng thái phòng: Đang vẽ mượt mà",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mất kết nối mạng...",
+        "location": {
+          "startingColumn": 93,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 44
+        }
+      }
+    ]
+  },
+  "version": 1
+}

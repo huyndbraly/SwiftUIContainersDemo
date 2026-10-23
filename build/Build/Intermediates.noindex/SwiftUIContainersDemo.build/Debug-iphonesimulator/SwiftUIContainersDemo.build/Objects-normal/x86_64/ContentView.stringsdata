@@ -1,0 +1,152 @@
+{
+  "source": "/Users/admin/Documents/Learning/SwiftUIContainersDemo/SwiftUIContainersDemo/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Môi trường: Đang bật Dark Mode",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "Môi trường: Đang bật Light Mode",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "Socket: Đang trực tuyến",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Socket: Đã ngắt kết nối (Tiết kiệm pin)",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Danh sách phòng",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 115
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vẽ chung realtime",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vẽ chung 2 máy",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Đang dùng cọ cỡ: %lldpx",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tạo phòng học vẽ mới",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 206
+        }
+      },
+      {
+        "comment": "",
+        "key": "Phòng học Drawing Together",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Xem tất cả",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 236
+        }
+      },
+      {
+        "comment": "",
+        "key": "Giảng viên: %@",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 262
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld học viên",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vào lớp học",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "Thư viện bài học thực hành",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 293
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hoàn thành bài tập",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 321
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nội dung hướng dẫn chi tiết từng bước thực hành sáng tạo nghệ thuật cho bài học này.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "Đóng hướng dẫn",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 399
+        }
+      }
+    ]
+  },
+  "version": 1
+}

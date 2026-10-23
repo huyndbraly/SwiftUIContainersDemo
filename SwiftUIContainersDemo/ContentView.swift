@@ -122,6 +122,30 @@ struct ContentView: View {
                         }
                         .padding(.horizontal)
 
+                        // Demo @Observable: bấm vào => append(LiveDrawingRoute()) => tra .navigationDestination(for: LiveDrawingRoute.self)
+                        NavigationLink(value: LiveDrawingRoute()) {
+                            Text("Vẽ chung realtime")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.7))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
+                        // Demo Single Source of Truth: vẽ chung 2 simulator qua server cục bộ (python3 Server/drawing_server.py)
+                        NavigationLink(value: SharedBoardRoute()) {
+                            Text("Vẽ chung 2 máy")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.5))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
                         // CÁCH 2 - BẰNG CODE QUA PATH (nhảy thẳng Phòng 123 -> Tranh 42): demo bằng deep link, xem .onOpenURL bên dưới
                         //   xcrun simctl openurl booted artmate://room/123/42
                         
@@ -320,6 +344,12 @@ struct ContentView: View {
                 .navigationDestination(for: RoomListRoute.self) { _ in // _ : không cần dùng giá trị, chỉ cần biết kiểu
                     RoomListView()
                 }
+                .navigationDestination(for: LiveDrawingRoute.self) { _ in
+                    LiveDrawingView()
+                }
+                .navigationDestination(for: SharedBoardRoute.self) { _ in
+                    SharedBoardView()
+                }
                 // 4. ĐỊNH NGHĨA ĐÍCH ĐẾN KHI PATH CÓ CHỨA MÃ PHÒNG (STRING)
                 .navigationDestination(for: String.self) { roomID in
                     RoomDetailView(roomId: roomID, isConnected: $isSocketConnected)
@@ -413,7 +443,26 @@ struct ContentView: View {
             // Xử lý URL dạng:
             //   artmate://room/123     => Sảnh -> Phòng 123
             //   artmate://room/123/42  => Sảnh -> Phòng 123 -> Tranh 42
-            guard url.scheme == "artmate", url.host == "room" else { return } //=> kiểm tra đúng loại link
+            //   artmate://draw         => Sảnh -> Vẽ chung realtime (@Observable)
+            guard url.scheme == "artmate" else { return } //=> kiểm tra đúng giao thức
+
+            // xcrun simctl openurl booted artmate://draw
+            if url.host == "draw" {
+                var drawPath = NavigationPath()
+                drawPath.append(LiveDrawingRoute())
+                navigationPathScreen = drawPath
+                return // xong, không chạy tiếp phần dựng path của "room" bên dưới
+            }
+
+            // xcrun simctl openurl <UDID> artmate://shared
+            if url.host == "shared" { // artmate://shared => Sảnh -> Vẽ chung 2 máy
+                var sharedPath = NavigationPath()
+                sharedPath.append(SharedBoardRoute())
+                navigationPathScreen = sharedPath
+                return
+            }
+
+            guard url.host == "room" else { return } //=> kiểm tra đúng host
 
             // url.pathComponents của artmate://room/123/42 là ["/", "123", "42"] => dropFirst() bỏ "/" => ["123", "42"]
 
