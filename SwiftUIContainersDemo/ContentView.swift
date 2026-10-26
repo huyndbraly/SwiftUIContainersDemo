@@ -14,7 +14,11 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme // truy xuất trực tiếp giá trị cấu hình colorScheme được truyền ngầm trong môi trường của hệ thống view
     
     @Environment(\.customAppColor) private var appThemeColor // Hứng màu chủ đạo từ môi trường chung
-    
+
+    // Chế độ sáng/tối người dùng ÉP cho app. nil = chưa ép, đi theo cài đặt hệ thống.
+    // Gán vào .preferredColorScheme(...) ở cấp gốc => SwiftUI đẩy lên tận cửa sổ, nên @Environment(\.colorScheme) của MỌI view (kể cả màn được push) đều đổi theo.
+    @State private var preferredScheme: ColorScheme? = nil
+
     // 1. Khai báo Namespace và trạng thái để làm hiệu ứng phóng to (matchedGeometryEffect)
     @Namespace var animationNamespace //tạo không gian định danh chung cho 2 view để swiftUI nhận biết chúng là cùng 1 đối tượng
     @State private var selectedArt: String? = nil // Khai báo biến trạng thái selectedArt kiểu Optional: dấu ? nghĩa là biến này có thể chứa một chuỗi (String) hoặc nil (không có giá trị). nil = chưa chọn bài học nào.
@@ -91,7 +95,18 @@ struct ContentView: View {
                             Text(colorScheme == .dark ? "Môi trường: Đang bật Dark Mode" : "Môi trường: Đang bật Light Mode")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            
+
+                            Spacer()
+
+                            // Toggle cần Binding<Bool>, nhưng dữ liệu thật là ColorScheme? => tự dựng Binding bằng get/set:
+                            //   get: đọc colorScheme ĐANG HIỂN THỊ (lúc chưa ép thì chính là cài đặt hệ thống)
+                            //   set: người dùng gạt => ép sang .dark hoặc .light
+                            // Toggle hoạt động dựa trên một thuộc tính kiểu Bool thông qua cơ chế Binding ($isOn). Khi người dùng gạt Toggle, giá trị của biến Bool này sẽ tự động thay đổi ngược lại (từ true thành false hoặc ngược lại), và giao diện sẽ tự cập nhật theo
+                            Toggle("Dark Mode", isOn: Binding(
+                                get: { colorScheme == .dark },
+                                set: { isOn in preferredScheme = isOn ? .dark : .light }
+                            ))
+                            .labelsHidden()
                         }
                         .padding(.horizontal)
                         
@@ -141,6 +156,18 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(appThemeColor.opacity(0.5))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
+                        // Demo Swift Concurrency: tải JSON + 20 thumbnail song song bằng TaskGroup
+                        NavigationLink(value: LessonListRoute()) {
+                            Text("Bài học")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.35))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                         }
@@ -350,6 +377,9 @@ struct ContentView: View {
                 .navigationDestination(for: SharedBoardRoute.self) { _ in
                     SharedBoardView()
                 }
+                .navigationDestination(for: LessonListRoute.self) { _ in
+                    LessonListView()
+                }
                 // 4. ĐỊNH NGHĨA ĐÍCH ĐẾN KHI PATH CÓ CHỨA MÃ PHÒNG (STRING)
                 .navigationDestination(for: String.self) { roomID in
                     RoomDetailView(roomId: roomID, isConnected: $isSocketConnected)
@@ -414,7 +444,11 @@ struct ContentView: View {
                 }
             } // đóng ZStack
         } // đóng NavigationStack
-        
+
+        // --- ÉP CHẾ ĐỘ SÁNG/TỐI Ở CẤP GỐC ---
+        // nil => đi theo hệ thống; .light/.dark => ép cả cửa sổ. Màu động (.primary, systemBackground...) tự đổi theo, không cần if/else.
+        .preferredColorScheme(preferredScheme)
+
         // --- 5. ĐẶT .onChange Ở CẤP GỐC (gắn vào NavigationStack) ĐỂ LUÔN LẮNG NGHE VÒNG ĐỜI APP ---
         // "Mỗi khi người dùng bấm nút Home thoát app ra ngoài, hoặc bấm mở lại app, hãy báo ngay cho tôi biết trạng thái vừa chuyển từ đâu qua đâu!"
         .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -448,6 +482,14 @@ struct ContentView: View {
 
             // xcrun simctl openurl booted artmate://draw
             if url.host == "draw" {
+                // Demo ARC: artmate://draw?mode=strong | weak | unowned => closure bắt self theo kiểu đó, rời màn KHÔNG gọi stop()
+                // Không có ?mode => chạy bình thường (weak + gọi stop())
+                let modeText = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+                    .queryItems?.first(where: { $0.name == "mode" })?.value
+                let mode = modeText.flatMap { CaptureMode(rawValue: $0) } // chữ sai (vd "abc") => nil
+                DrawingBoard.captureMode = mode ?? .weak
+                DrawingBoard.stopOnExit = (mode == nil)
+
                 var drawPath = NavigationPath()
                 drawPath.append(LiveDrawingRoute())
                 navigationPathScreen = drawPath
@@ -459,6 +501,14 @@ struct ContentView: View {
                 var sharedPath = NavigationPath()
                 sharedPath.append(SharedBoardRoute())
                 navigationPathScreen = sharedPath
+                return
+            }
+
+            // xcrun simctl openurl <UDID> artmate://lessons
+            if url.host == "lessons" { // artmate://lessons => Sảnh -> Bài học (async)
+                var lessonsPath = NavigationPath()
+                lessonsPath.append(LessonListRoute())
+                navigationPathScreen = lessonsPath
                 return
             }
 

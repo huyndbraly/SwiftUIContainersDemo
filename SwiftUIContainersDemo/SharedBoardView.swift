@@ -10,6 +10,9 @@ private let boardPalette: [Color] = [.red, .orange, .green, .blue, .purple, .pin
 struct SharedBoardView: View {
     @State private var store = SharedDrawingStore()
 
+    // Trạng thái vòng đời app (active / inactive / background), SwiftUI tự cập nhật. Chỉ đọc, không gán được.
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some View {
         let _ = Self._printChanges()
         VStack(spacing: 12) {
@@ -23,8 +26,24 @@ struct SharedBoardView: View {
         .padding()
         .navigationTitle("Vẽ chung 2 máy")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { store.connect() }
-        .onDisappear { store.disconnect() }
+        .onAppear { store.connect() }       // vào phòng => kết nối
+        .onDisappear { store.disconnect() } // rời phòng (bấm Back) => ngắt
+        // Bấm Home KHÔNG gọi onDisappear (màn vẫn còn trong NavigationStack, chỉ là app xuống nền)
+        // => phải tự nghe scenePhase để ngắt/nối lại socket.
+        .onChange(of: scenePhase) { _, newPhase in
+            switch newPhase {
+            case .background: // bấm Home / chuyển app khác => ngắt để đỡ hao pin, đỡ tốn mạng
+                print("🌙 [Phòng vẽ] App xuống nền => ngắt socket")
+                store.disconnect()
+            case .active: // mở lại app => nối lại. Màn vẫn là phòng vẽ vì NavigationStack giữ nguyên path
+                print("☀️ [Phòng vẽ] App mở lại => kết nối lại socket")
+                store.connect()
+            case .inactive: // có cuộc gọi đến, kéo Control Center... thường chỉ thoáng qua => giữ kết nối
+                print("🟡 [Phòng vẽ] App tạm thời không tương tác (inactive) => giữ kết nối")
+            @unknown default:
+                break
+            }
+        }
     }
 }
 

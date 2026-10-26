@@ -153,6 +153,7 @@ final class SharedDrawingStore {
 
     func connect() {
         guard loop == nil else { return }
+        print("🔌 Socket: bắt đầu kết nối \(serverURL)")
         loop = Task { [weak self] in
             while !Task.isCancelled {
                 guard let self else { return }
@@ -164,6 +165,8 @@ final class SharedDrawingStore {
     }
 
     func disconnect() {
+        guard loop != nil else { return } // chưa kết nối thì thôi, tránh in log thừa
+        print("🔌 Socket: đã ngắt kết nối")
         loop?.cancel()
         loop = nil
         socket?.cancel(with: .goingAway, reason: nil) // làm receive() đang chờ bị ném lỗi để vòng lặp thoát
