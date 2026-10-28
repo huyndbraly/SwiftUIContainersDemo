@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import Features // package chứa màn Bài học + Phòng vẽ chung (MVVM) và hộp đồ nghề AppDependencies
 
 struct ContentView: View {
     
@@ -14,6 +15,9 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme // truy xuất trực tiếp giá trị cấu hình colorScheme được truyền ngầm trong môi trường của hệ thống view
     
     @Environment(\.customAppColor) private var appThemeColor // Hứng màu chủ đạo từ môi trường chung
+
+    // Hộp đồ nghề (service mạng, socket) do App bỏ vào môi trường. Sảnh lấy ra rồi truyền vào màn con qua init.
+    @Environment(\.dependencies) private var dependencies
 
     // Chế độ sáng/tối người dùng ÉP cho app. nil = chưa ép, đi theo cài đặt hệ thống.
     // Gán vào .preferredColorScheme(...) ở cấp gốc => SwiftUI đẩy lên tận cửa sổ, nên @Environment(\.colorScheme) của MỌI view (kể cả màn được push) đều đổi theo.
@@ -168,6 +172,42 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(appThemeColor.opacity(0.35))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
+                        // Demo Gesture Composability: 1 ngón vẽ, 2 ngón zoom trên cùng 1 bảng
+                        NavigationLink(value: GestureBoardRoute()) {
+                            Text("1 ngón vẽ · 2 ngón zoom")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.25))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
+                        // Demo Canvas API: render 1.000+ nét mà vẫn ≥ 55 FPS
+                        NavigationLink(value: CanvasPerfRoute()) {
+                            Text("Canvas 1.000 nét")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.2))
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .padding(.horizontal)
+
+                        // Demo UIBezierPath: nối thẳng vs làm mượt Bezier trên cùng dữ liệu điểm
+                        NavigationLink(value: SmoothStrokeRoute()) {
+                            Text("Làm mượt nét vẽ")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(appThemeColor.opacity(0.15))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                         }
@@ -367,6 +407,12 @@ struct ContentView: View {
                 // navigationDestination lắng nghe value: từ NavigationLink hoặc path: $ từ NaviationPath() để vẽ lại màn
                 // Navigation Destination (hay gọi tắt là Destination) là nơi mà người dùng có thể đi đến (màn hình, giao diện, hoặc một View bất kỳ trong ứng dụng).
                 // Nếu thiếu dấu chấm, Swift hiểu là self.navigationDestination(...) => tạo ra một view MỚI bọc chính ContentView bên trong => body gọi lại body => đệ quy vô hạn, app crash.
+                // VÒNG ĐỜI VIEW của Sảnh: push màn khác đè lên => Sảnh bị che => onDisappear (dù Sảnh vẫn còn trong NavigationStack).
+                // Pop về => onAppear chạy LẠI. => onAppear/onDisappear = "hiện/khuất trên màn hình", KHÔNG phải "được tạo/bị huỷ".
+                .onAppear { print("🔄 [Lifecycle] Sảnh: onAppear") }
+                // Đoạn trong { … } là một closure. Viết như trên tức là đưa closure đó cho SwiftUI giữ, kèm lời dặn: “khi nào view này hiện lên màn hình thì chạy đoạn này giúp tôi”. onDisappear cũng vậy: “khi nào view này khuất khỏi màn hình thì chạy đoạn kia”.
+                .onDisappear { print("🔄 [Lifecycle] Sảnh: onDisappear") }
+                
                 // ĐÍCH ĐẾN KHI PATH CÓ CHỨA RoomListRoute (danh sách phòng)
                 .navigationDestination(for: RoomListRoute.self) { _ in // _ : không cần dùng giá trị, chỉ cần biết kiểu
                     RoomListView()
@@ -375,10 +421,19 @@ struct ContentView: View {
                     LiveDrawingView()
                 }
                 .navigationDestination(for: SharedBoardRoute.self) { _ in
-                    SharedBoardView()
+                    SharedBoardView(socket: dependencies.makeDrawingSocket()) // DI qua init: phòng vẽ nhận socket từ ngoài
                 }
                 .navigationDestination(for: LessonListRoute.self) { _ in
-                    LessonListView()
+                    LessonListView(service: dependencies.lessonService) // DI qua init: màn bài học nhận service từ ngoài
+                }
+                .navigationDestination(for: GestureBoardRoute.self) { _ in
+                    GestureBoardView()
+                }
+                .navigationDestination(for: CanvasPerfRoute.self) { _ in
+                    CanvasPerfView()
+                }
+                .navigationDestination(for: SmoothStrokeRoute.self) { _ in
+                    SmoothStrokeView()
                 }
                 // 4. ĐỊNH NGHĨA ĐÍCH ĐẾN KHI PATH CÓ CHỨA MÃ PHÒNG (STRING)
                 .navigationDestination(for: String.self) { roomID in
@@ -481,6 +536,12 @@ struct ContentView: View {
             guard url.scheme == "artmate" else { return } //=> kiểm tra đúng giao thức
 
             // xcrun simctl openurl booted artmate://draw
+            // xcrun simctl openurl <UDID> artmate://home => xoá hết path, quay về Sảnh (giống bấm Back tới tận gốc)
+            if url.host == "home" {
+                navigationPathScreen = NavigationPath()
+                return
+            }
+
             if url.host == "draw" {
                 // Demo ARC: artmate://draw?mode=strong | weak | unowned => closure bắt self theo kiểu đó, rời màn KHÔNG gọi stop()
                 // Không có ?mode => chạy bình thường (weak + gọi stop())
@@ -496,6 +557,14 @@ struct ContentView: View {
                 return // xong, không chạy tiếp phần dựng path của "room" bên dưới
             }
 
+            // xcrun simctl openurl <UDID> "artmate://race?mode=class" | "artmate://race?mode=actor" => demo data race, xem RaceDemo.swift
+            if url.host == "race" {
+                let mode = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+                    .queryItems?.first(where: { $0.name == "mode" })?.value ?? "class"
+                Task { await RaceDemo.run(mode: mode) }
+                return
+            }
+
             // xcrun simctl openurl <UDID> artmate://shared
             if url.host == "shared" { // artmate://shared => Sảnh -> Vẽ chung 2 máy
                 var sharedPath = NavigationPath()
@@ -509,6 +578,30 @@ struct ContentView: View {
                 var lessonsPath = NavigationPath()
                 lessonsPath.append(LessonListRoute())
                 navigationPathScreen = lessonsPath
+                return
+            }
+
+            // xcrun simctl openurl <UDID> artmate://gestures
+            if url.host == "gestures" { // artmate://gestures => Sảnh -> 1 ngón vẽ · 2 ngón zoom
+                var gesturesPath = NavigationPath()
+                gesturesPath.append(GestureBoardRoute())
+                navigationPathScreen = gesturesPath
+                return
+            }
+
+            // xcrun simctl openurl <UDID> artmate://canvas
+            if url.host == "canvas" { // artmate://canvas => Sảnh -> Canvas 1.000 nét
+                var canvasPath = NavigationPath()
+                canvasPath.append(CanvasPerfRoute())
+                navigationPathScreen = canvasPath
+                return
+            }
+
+            // xcrun simctl openurl <UDID> artmate://smooth
+            if url.host == "smooth" { // artmate://smooth => Sảnh -> Làm mượt nét vẽ
+                var smoothPath = NavigationPath()
+                smoothPath.append(SmoothStrokeRoute())
+                navigationPathScreen = smoothPath
                 return
             }
 

@@ -90,15 +90,15 @@ final class DrawingBoard {
             // ✅ [weak self]: closure không giữ board => board chết thì self tự thành nil.
             // Board chết nhưng RunLoop vẫn giữ Timer => tự tắt timer, nếu không timer chạy mãi với self = nil.
             let boardID = id // copy số Int ra ngoài, để vẫn in được id khi board đã chết
+            // Kiểm tra self và tắt timer NGOÀI MainActor.assumeIsolated: Timer không phải Sendable,
+            // đưa nó vào closure của MainActor bị Strict Concurrency báo "sending 'timer' risks causing data races".
             timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] timer in
-                MainActor.assumeIsolated {
-                    guard let self else {
-                        print("⏹ Timer của board #\(boardID) tự tắt vì board đã được giải phóng (self == nil)")
-                        timer.invalidate()
-                        return
-                    }
-                    self.receiveStrokeFromServer()
+                guard let self else {
+                    print("⏹ Timer của board #\(boardID) tự tắt vì board đã được giải phóng (self == nil)")
+                    timer.invalidate()
+                    return
                 }
+                MainActor.assumeIsolated { self.receiveStrokeFromServer() }
             }
         case .unowned:
             // ⚠️ [unowned self]: closure không giữ board, nhưng KHÔNG tự thành nil.
